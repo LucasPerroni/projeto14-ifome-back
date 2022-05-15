@@ -6,6 +6,7 @@ import dotenv from "dotenv"
 
 import loginRouter from "./routes/loginRouter.js"
 import productsRouter from "./routes/productsRouter.js"
+import checkoutRouter from "./routes/checkoutRouter.js"
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ app.use(cors())
 // routes
 app.use(loginRouter)
 app.use(productsRouter)
+app.use(checkoutRouter)
 
 // port
 const port = process.env.PORT || 5000
