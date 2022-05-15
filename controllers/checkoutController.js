@@ -7,7 +7,7 @@ export async function getCheckout(req, res) {
 
   try {
     // check if there is any checkout not finished in database
-    const checkout = await db.collection("checkout").findOne({ user: user._id, status: "wait" })
+    const checkout = await db.collection("shopping").findOne({ user: user._id.toString(), status: "wait" })
     if (!checkout) {
       return res.sendStatus(404)
     }
@@ -26,7 +26,7 @@ export async function updateCheckout(req, res) {
 
   try {
     // get the checkout from id
-    const checkout = await db.collection("checkout").findOne({ _id: new ObjectId(id) })
+    const checkout = await db.collection("shopping").findOne({ _id: new ObjectId(id) })
     if (!checkout) {
       return res.sendStatus(404)
     }
@@ -41,7 +41,7 @@ export async function updateCheckout(req, res) {
       return res.sendStatus(401)
     }
 
-    await db.collection("checkout").updateOne(checkout, { $set: { status: "finished" } })
+    await db.collection("shopping").updateOne(checkout, { $set: { status: "finished" } })
     res.sendStatus(200)
   } catch (e) {
     res.sendStatus(500)
@@ -54,7 +54,7 @@ export async function deleteCheckout(req, res) {
 
   try {
     // get checkout from id
-    const checkout = await db.collection("checkout").findOne({ _id: new ObjectId(id) })
+    const checkout = await db.collection("shopping").findOne({ _id: new ObjectId(id) })
     if (!checkout) {
       return res.sendStatus(404)
     }
@@ -69,7 +69,7 @@ export async function deleteCheckout(req, res) {
       return res.sendStatus(401)
     }
 
-    await db.collection("checkout").deleteOne(checkout)
+    await db.collection("shopping").deleteOne(checkout)
     res.sendStatus(200)
   } catch (e) {
     res.sendStatus(500)

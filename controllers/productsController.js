@@ -38,7 +38,7 @@ export async function postProducts (rec,res) {
             if(IDs.length != 0){
                 const totalProducts = [...products]
                 totalProducts.push(...productsWait)                
-                await db.collection("shopping").updateOne({user: headers.user}, {$set: {shpping: totalProducts}});
+                await db.collection("shopping").updateOne({user: headers.user, status: "wait"}, {$set: {shpping: totalProducts}});
             }
         }else{
             if(IDs.length != 0){

@@ -13,7 +13,7 @@ export async function token(req, res, next) {
       return res.sendStatus(401)
     }
 
-    const user = await db.collection("users").findOne({ _id: session.userId })
+    const user = await db.collection("users").findOne({ _id: session.user_id })
     if (!user) {
       return res.sendStatus(401)
     }
